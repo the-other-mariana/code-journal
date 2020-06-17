@@ -14,9 +14,11 @@ img[:] = (255, 255, 255)
 h = len(img)
 w = len(img[0])
 
+# calculates distance between two points (tuples)
 def distance(p1, p2):
 	return math.sqrt((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)
 
+# paints a grid on the image
 def grid(gap, img):
 	for i in range(h):
 		for j in range(w):
@@ -25,6 +27,7 @@ def grid(gap, img):
 			if (i % gap == 0 or j % gap == 0) and (i % 2 == 0 and j % 2 == 0):
 				img[i, j] = [0, 0, 0]
 
+# paints a line between two points using polar coordinates
 def line(p1, p2, color, img):
 	rads = 0
 
@@ -57,7 +60,7 @@ def line(p1, p2, color, img):
 		y = int(y)
 		img[y, x] = color
 
-
+# example
 p1 = tuple([20, 20])
 p2 = tuple([40, -40])
 grid(20, img)
