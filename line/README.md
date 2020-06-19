@@ -1,6 +1,7 @@
-## Line Function implementation
+## Line Function Implementation
 
-This is a small code that paints a line between two given points in an image, using polar coordinates. Implemented in Python 3.6 <br />
+This is a small code that paints a line between two given points in an image, using polar coordinates. <br />
+Implemented in `Python 3.6` but can be easily done in any language. <br />
 
 ## Usage 
 
@@ -18,8 +19,8 @@ line([0, 30], [-100, 60], 7, [255, 0, 0], img)
 
 And you will get a blue line from point `0, 30` to point `-100, 60` with 7 pixels of thickness: <br />
 
-### ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/shader-gif.gif)<br />
+### ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/line/output/blue-line.png?raw=true)<br />
 
 You can draw as many lines as you want. <br />
 
-### ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/shader-gif.gif)<br />
+### ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/line/output/red-blue-lines.png?raw=true)<br />
