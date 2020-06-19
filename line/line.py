@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import math
 from matplotlib import pyplot as plt
-from random import randrange
 
 PI = 3.1416
 
@@ -87,8 +86,9 @@ thickness = 3
 color = [0, 0, 255]
 gridGap = 20
 
-grid(gridGap, img)
+grid(gridGap, img) # paints grid
 line(p1, p2, thickness, color, img)
+line([0, 30], [-100, 60], 7, [255, 0, 0], img)
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
