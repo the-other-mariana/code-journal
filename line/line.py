@@ -4,22 +4,30 @@ import math
 from matplotlib import pyplot as plt
 from random import randrange
 
-img_size = 400
 PI = 3.1416
-# create white image
-img = np.zeros([img_size, img_size,3],dtype=np.uint8)
-img[:] = (255, 255, 255)
-
-# for guidance
-h = len(img)
-w = len(img[0])
 
 # calculates distance between two points (tuples)
 def distance(p1, p2):
 	return math.sqrt((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)
 
+# loops around main pixel for given thickness
+def roundPixel(i, j, thickness, color, img):
+	# for guidance
+	h = len(img)
+	w = len(img[0])
+
+	for r in range(int(i - thickness / 2.0), int(i + thickness / 2.0)):
+		for c in range(int(j - thickness / 2.0), int(j + thickness / 2.0)):
+			if c > w or r > h or c < 0 or r < 0:
+				continue
+			img[r, c] = color
+
 # paints a grid on the image
 def grid(gap, img):
+	# for guidance
+	h = len(img)
+	w = len(img[0])
+
 	for i in range(h):
 		for j in range(w):
 			if i == int(h / 2.0) or j == int(w / 2.0) :
@@ -28,7 +36,10 @@ def grid(gap, img):
 				img[i, j] = [0, 0, 0]
 
 # paints a line between two points using polar coordinates
-def line(p1, p2, color, img):
+def line(p1, p2, thickness, color, img):
+	# for guidance
+	h = len(img)
+	w = len(img[0])
 	rads = 0
 
 	# case of division by zero
@@ -41,7 +52,7 @@ def line(p1, p2, color, img):
 		if (p2[0] - p1[0]) < 0:
 			rads += PI
 	# prints the degrees between the two points
-	print(rads*180/PI)
+	# print(rads*180/PI)
 
 	dist = int(distance(p1, p2))
 	for r in range(dist):
@@ -59,12 +70,25 @@ def line(p1, p2, color, img):
 		x = int(x)
 		y = int(y)
 		img[y, x] = color
+		roundPixel(y, x, thickness, color, img)
 
-# example
+
+# EXAMPLE
+img_size = 400
+
+# white image
+img = np.zeros([img_size, img_size,3],dtype=np.uint8)
+img[:] = (255, 255, 255)
+
+# painting a red line
 p1 = tuple([20, 20])
 p2 = tuple([40, -40])
-grid(20, img)
-line(p1, p2, [0, 0, 255], img)
+thickness = 3
+color = [0, 0, 255]
+gridGap = 20
+
+grid(gridGap, img)
+line(p1, p2, thickness, color, img)
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
