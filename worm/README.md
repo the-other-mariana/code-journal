@@ -1,4 +1,4 @@
-# Worm-like Movement Animation
+# Worm-like Movement Animation in Mathematica
 
 This is a Mathematica notebook that contains a worm-like animation, exported to a mov file by Mathematica commands.
 
