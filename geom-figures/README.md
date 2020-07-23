@@ -2,6 +2,8 @@
 
 This is a small script that creates a series of regular polygons to form a spiral.<br />
 
+The [pdf document](https://github.com/the-other-mariana/code-journal/blob/master/geom-figures/CJ06_GeomSpiral.pdf) also in this folder explains further theory and the concepts I used.<br />
+
 ## Specifications
 
 Python version: `3.6.2` <br />
