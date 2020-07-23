@@ -60,7 +60,7 @@ def line(p1, p2, thickness, color, img):
 		y = h / 2.0 - y
 
 		# validate if point is inside image
-		if x > w or y > h or x < 0 or y < 0:
+		if x >= w or y >= h or x < 0 or y < 0:
 			continue
 
 		x = int(x)

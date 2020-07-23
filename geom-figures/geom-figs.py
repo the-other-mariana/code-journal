@@ -34,6 +34,27 @@ acc_angle = 0.0
 acc_size = size
 verts = []
 step_angle = 360.0 / num_sides
+
+# for angle visualization
+'''
+for r in range(300):
+	for i in range(int(360.0/delta_angle)):
+		angle = i * delta_angle
+		x = r * math.cos(angle * PI / 180.0)
+		y = r * math.sin(angle * PI / 180.0)
+
+		x += w / 2.0
+		y = h / 2.0 - y
+
+		x = int(x)
+		y = int(y)
+
+		# validate if point is inside image
+		if x >= w or y >= h or x < 0 or y < 0:
+			continue
+
+		img[y, x] = [255, 0, 0]
+'''
 for j in range(num_iter):
 	last_point = [0.0, 0.0]
 	first_point = [0.0, 0.0]
@@ -62,7 +83,7 @@ for j in range(num_iter):
 		y = int(y)
 
 		# validate if point is inside image
-		if x > w or y > h or x < 0 or y < 0:
+		if x >= w or y >= h or x < 0 or y < 0:
 			continue
 
 		ca = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
