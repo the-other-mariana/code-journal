@@ -65,14 +65,12 @@ for j in range(num_iter):
 		x = fig_center[0] + (acc_size) * math.cos(angle * PI / 180.0)
 		y = fig_center[1] + (acc_size) * math.sin(angle * PI / 180.0)
 
-
 		if i == 0:
 			first_point = [x, y]
 		if i > 0:
 			ln.line([x, y], last_point, thick, color, img)
 		if i == num_sides - 1:
 			ln.line([x, y], first_point, thick, color, img)
-
 
 		last_point = [x, y]
 		verts.append([x, y])
@@ -86,20 +84,14 @@ for j in range(num_iter):
 		if x >= w or y >= h or x < 0 or y < 0:
 			continue
 
-
-	ca1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
-	print("ca1 1:", ca1)
-	#ca1 = abs(acc_size - ca1)
-	print("ca1 2:", ca1)
-	ca2 = acc_size * math.cos(delta_angle * PI / 180.0)
-	delta_L = abs(acc_size - ca2)
-	print(delta_L)
+	adj1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
+	#print("ca1 1:", adj1)
+	adj2 = acc_size * math.cos(delta_angle * PI / 180.0)
+	delta_L = abs(acc_size - adj2)
+	#print(delta_L)
 	acc_angle += delta_angle
-	#acc_size += abs(acc_size - ca1)
-	#acc_size += abs(abs(acc_size - ca1) - delta_L)
-	acc_size += abs(ca1 - delta_L)
-
-
+	delta_size = abs(adj1 - delta_L)
+	acc_size += delta_size
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
