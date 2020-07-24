@@ -34,7 +34,7 @@ acc_angle = 0.0
 acc_size = size
 verts = []
 step_angle = 360.0 / num_sides
-
+ca1 = 0.0
 # for angle visualization
 '''
 for r in range(300):
@@ -86,12 +86,19 @@ for j in range(num_iter):
 		if x >= w or y >= h or x < 0 or y < 0:
 			continue
 
-		ca = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
-		ca = abs(acc_size - ca)
-		#print(ca)
+
+	ca1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
+	print("ca1 1:", ca1)
+	#ca1 = abs(acc_size - ca1)
+	print("ca1 2:", ca1)
+	ca2 = acc_size * math.cos(delta_angle * PI / 180.0)
+	delta_L = abs(acc_size - ca2)
+	print(delta_L)
 	acc_angle += delta_angle
-	#acc_size += delta_size
-	acc_size += abs(acc_size - ca)
+	#acc_size += abs(acc_size - ca1)
+	#acc_size += abs(abs(acc_size - ca1) - delta_L)
+	acc_size += abs(ca1 - delta_L)
+
 
 
 # show image
