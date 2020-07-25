@@ -34,7 +34,6 @@ acc_angle = 0.0
 acc_size = size
 verts = []
 step_angle = 360.0 / num_sides
-ca1 = 0.0
 # for angle visualization
 '''
 for r in range(300):
@@ -95,5 +94,6 @@ for j in range(num_iter):
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.title('Result Image'), plt.xticks([]), plt.yticks([])
+plt.title('Iterations = {}, Angle = {}°'.format(num_iter, delta_angle)), plt.xticks([]), plt.yticks([])
+#plt.savefig("test06.png",bbox_inches='tight')
 plt.show()
