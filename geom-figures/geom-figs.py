@@ -95,5 +95,5 @@ for j in range(num_iter):
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.title('Iterations = {}, Angle = {}°'.format(num_iter, delta_angle)), plt.xticks([]), plt.yticks([])
-plt.savefig("test9.png",bbox_inches='tight')
-#plt.show()
+#plt.savefig("test9.png",bbox_inches='tight')
+plt.show()
