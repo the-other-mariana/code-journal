@@ -18,7 +18,7 @@ thick = 2
 num_sides = 4
 fig_center = [0.0, 0.0]
 size = 60
-num_iter = 12
+num_iter = 9
 
 # constants
 PI = 3.1416
@@ -95,5 +95,5 @@ for j in range(num_iter):
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.title('Iterations = {}, Angle = {}°'.format(num_iter, delta_angle)), plt.xticks([]), plt.yticks([])
-#plt.savefig("test06.png",bbox_inches='tight')
-plt.show()
+plt.savefig("test9.png",bbox_inches='tight')
+#plt.show()
