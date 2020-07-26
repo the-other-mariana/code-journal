@@ -18,7 +18,7 @@ thick = 2
 num_sides = 4
 fig_center = [0.0, 0.0]
 size = 60
-num_iter = 9
+num_iter = 12
 
 # constants
 PI = 3.1416
