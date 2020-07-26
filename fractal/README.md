@@ -16,4 +16,4 @@ Python version: `3.6.2` <br />
 
 A sample output I got was the following: <br />
 
-![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/tree01.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/tree_stats01.png?raw=true) <br />
