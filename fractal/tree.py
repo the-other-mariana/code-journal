@@ -76,12 +76,12 @@ while(True):
     #print(son2.angle)
     branches.append(son1)
     branches.append(son2)
-
+    if (son1.thick <= 2):
+        break
     ln.line(son1.begin, son1.end, son1.thick, color, img)
     ln.line(son2.begin, son2.end, son1.thick, color, img)
     i+=1
-    if (son1.thick <= 2):
-        break
+
     #ln.line(points[len(points) - 2], points[len(points) - 1], thick, color, img)
     #branches += 2 * branches
     #size = size * ds
