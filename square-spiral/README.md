@@ -2,7 +2,7 @@
 
 This is a small script that creates a series of squares to form an exact and calculated spiral.<br />
 
-The [pdf document](https://github.com/the-other-mariana/code-journal/blob/master/square-spiral/CJ06_GeomSpiral.pdf) also in this folder explains further theory and the concepts I used.<br />
+The [pdf document](https://github.com/the-other-mariana/code-journal/blob/master/square-spiral/CJ06_SquareSpiral.pdf) also in this folder explains further theory and the concepts I used.<br />
 
 ## Specifications
 
