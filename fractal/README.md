@@ -17,3 +17,7 @@ Python version: `3.6.2` <br />
 A sample output I got was the following: <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/tree_stats01.png?raw=true) <br />
+
+A preview version of how the program builds the fractal is shown below. I had tons of fun making this program.<br />
+
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/fractal-gif.gif)<br />
