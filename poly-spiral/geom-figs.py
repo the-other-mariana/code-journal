@@ -6,10 +6,10 @@ from matplotlib import pyplot as plt
 
 # parameters for user
 color = [0, 0, 0]
-num_sides = 4
+num_sides = 6
 fig_center = [0.0, 0.0]
-size = 60
-num_iter = 12
+size = 115
+num_iter = 6
 
 # white image aspect 1:1
 img_size = 400

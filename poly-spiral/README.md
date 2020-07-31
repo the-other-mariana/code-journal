@@ -22,4 +22,4 @@ For a square with 12 iterations, the output I got was the following: <br />
 
 Also, an hexagon of 6 iterations looks like below: <br />
 
-![alt text](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/results/hex6.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/results/hexagon_6it.png?raw=true) <br />
