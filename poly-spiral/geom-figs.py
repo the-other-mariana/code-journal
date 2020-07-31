@@ -4,23 +4,20 @@ import numpy as np
 import math
 from matplotlib import pyplot as plt
 
-# white image
-img_size = 400
-img = np.zeros([img_size, img_size,3],dtype=np.uint8)
-img[:] = (255, 255, 255)
-
+# parameters for user
 color = [0, 0, 0]
-gridGap = 20
-thick = 2
-
-#ln.grid(gridGap, img) # paints grid
-
 num_sides = 4
 fig_center = [0.0, 0.0]
 size = 60
 num_iter = 12
 
+# white image aspect 1:1
+img_size = 400
+img = np.zeros([img_size, img_size,3],dtype=np.uint8)
+img[:] = (255, 255, 255)
+
 # constants
+thick = 2
 PI = 3.1416
 h = len(img)
 w = len(img[0])
@@ -83,7 +80,8 @@ for j in range(num_iter):
 		if x >= w or y >= h or x < 0 or y < 0:
 			continue
 
-	adj1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan((step_angle / 2.0) * PI / 180.0))
+	angle2 = abs((step_angle / 2.0 - 90.0))
+	adj1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan(angle2 * PI / 180.0))
 	#print("ca1 1:", adj1)
 	adj2 = acc_size * math.cos(delta_angle * PI / 180.0)
 	delta_L = abs(acc_size - adj2)
@@ -94,6 +92,6 @@ for j in range(num_iter):
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.title('Iterations = {}, Angle = {}°'.format(num_iter, delta_angle)), plt.xticks([]), plt.yticks([])
-#plt.savefig("test9.png",bbox_inches='tight')
+plt.title('Iterations = {}, Angle = {:0.2f}°'.format(num_iter, delta_angle)), plt.xticks([]), plt.yticks([])
+#plt.savefig("tri{}.png".format(num_iter),bbox_inches='tight')
 plt.show()
