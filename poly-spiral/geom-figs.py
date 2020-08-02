@@ -6,10 +6,10 @@ from matplotlib import pyplot as plt
 
 # parameters for user
 color = [0, 0, 0]
-num_sides = 6
+num_sides = 4
 fig_center = [0.0, 0.0]
-size = 115
-num_iter = 6
+radius = 60
+num_iter = 12
 
 # white image aspect 1:1
 img_size = 400
@@ -28,7 +28,7 @@ delta_angle = (angle_dist * 180.0 / (num_sides)) / num_iter
 # or custom
 # delta_size = 5.0
 acc_angle = 0.0
-acc_size = size
+acc_radius = radius
 verts = []
 step_angle = 360.0 / num_sides
 # for angle visualization
@@ -58,8 +58,8 @@ for j in range(num_iter):
 	for i in range(num_sides):
 
 		angle = i * step_angle - (step_angle / 2.0) - acc_angle
-		x = fig_center[0] + (acc_size) * math.cos(angle * PI / 180.0)
-		y = fig_center[1] + (acc_size) * math.sin(angle * PI / 180.0)
+		x = fig_center[0] + (acc_radius) * math.cos(angle * PI / 180.0)
+		y = fig_center[1] + (acc_radius) * math.sin(angle * PI / 180.0)
 
 		if i == 0:
 			first_point = [x, y]
@@ -81,14 +81,14 @@ for j in range(num_iter):
 			continue
 
 	angle2 = abs((step_angle / 2.0 - 90.0))
-	adj1 = (acc_size * math.sin(delta_angle * PI / 180.0)) / (math.tan(angle2 * PI / 180.0))
+	adj1 = (acc_radius * math.sin(delta_angle * PI / 180.0)) / (math.tan(angle2 * PI / 180.0))
 	#print("ca1 1:", adj1)
-	adj2 = acc_size * math.cos(delta_angle * PI / 180.0)
-	delta_L = abs(acc_size - adj2)
+	adj2 = acc_radius * math.cos(delta_angle * PI / 180.0)
+	delta_L = abs(acc_radius - adj2)
 	#print(delta_L)
 	acc_angle += delta_angle
-	delta_size = abs(adj1 - delta_L)
-	acc_size += delta_size
+	delta_radius = abs(adj1 - delta_L)
+	acc_radius += delta_radius
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
