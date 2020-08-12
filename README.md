@@ -20,7 +20,7 @@ Some program in Python that makes random flowers. The [pdf](https://github.com/t
 
 ### Entry 003 [Custom Line Module](https://github.com/the-other-mariana/code-journal/tree/master/line)
 
-Some program in Python that implements a line function to paint a striaght line from point to point inside an image. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/line/CJ03_PolarLine.pdf) shows the pipeline.<br />
+Some program in Python that implements a line function to paint a straight line from point to point inside an image. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/line/CJ03_PolarLine.pdf) shows the pipeline.<br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/line/output/red-blue-lines.png?raw=true)<br />
 
