@@ -32,7 +32,7 @@ Small Mathematica notebook that creates a worm-like animation in a .mov file. Th
 
 ### Entry 006 [Regular Polygon Spiral](https://github.com/the-other-mariana/code-journal/tree/master/poly-spiral)
 
-Some program in Python that draws an exact regular polygon spiral image, importing my custom line module from Entry 003. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/CJ06_PolygonSpiral.pdf) shows the pipeline.<br />
+Some program in Python that draws an exact regular polygon spiral image, importing my custom line module from Entry 003. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/CJ06_PolygonSpiral.pdf) shows the pipeline and mathematical analysis to make it exact for any polygon. I had so much fun.<br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/results/square01.png?raw=true)<br />
 
