@@ -17,13 +17,14 @@ class Branch:
 
 # user parameters
 color = [0, 0, 0]
-thick = 30
-size = 150
+thick = 50
+size = 275
 angle = 30.0
 
-# white image aspect 4:3
-img_size = 800
-img = np.zeros([int(img_size * 0.75), img_size,3],dtype=np.uint8)
+# white image aspect 16:9
+img_w = 1920
+img_h = 1080
+img = np.zeros([img_h, img_w,3],dtype=np.uint8)
 img[:] = (255, 255, 255)
 
 # constants
@@ -35,11 +36,11 @@ offspring = 2
 
 # initial branch
 b1 = Branch(0)
-b1.angle = 90.0
+b1.angle = 90
 b1.size = size
 b1.thick = thick
 b1.begin = [center[0] + 0.0, center[1] + 0.0]
-b1.end = [center[0] + 0.0, center[1] + size]
+b1.end = [center[0] + b1.size * math.cos((b1.angle) * PI / 180.0), center[1] + b1.size * math.sin((b1.angle) * PI / 180.0)]
 branches = []
 branches.append(b1)
 ln.line(branches[0].begin, branches[0].end, thick, color, img)
@@ -73,6 +74,6 @@ while(True):
 print(len(branches))
 
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.title('Branches = {}, \u0394Angle = {}°, Thickness = {}'.format(len(branches), thick, angle)), plt.xticks([]), plt.yticks([])
+plt.title('Branches = {}, \u0394Angle = {}°, Thickness = {}'.format(len(branches), angle, thick)), plt.xticks([]), plt.yticks([])
 #plt.savefig("test9.png",bbox_inches='tight')
 plt.show()
