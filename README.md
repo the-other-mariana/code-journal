@@ -42,7 +42,4 @@ Some program in Python that draws a simple fractal tree, importing my custom lin
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/tree_stats01.png?raw=true)<br />
 
-I also made a small preview of how the fractal is done.<br />
-
-![alt text](https://github.com/the-other-mariana/code-journal/blob/master/fractal/results/fractal-gif.gif)<br />
 
