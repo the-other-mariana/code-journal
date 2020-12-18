@@ -44,7 +44,7 @@ Some program in Python that draws a simple fractal tree, importing my custom lin
 
 ### Entry 008 [Sierpinski Triangle](https://github.com/the-other-mariana/code-journal/tree/master/sierpinski-triangle)
 
-Program in Python that draws a Sierpinski Triangle, importing my custom line module from Entry 003 and a recursive function. A sample output I got was the following.<br />
+Program in Python that draws a Sierpinski Triangle, importing my custom line module from Entry 003. It uses a recursive function. A sample output I got was the following.<br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/output/tri03.png?raw=true)<br />
 
