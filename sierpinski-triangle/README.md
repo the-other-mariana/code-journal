@@ -32,4 +32,4 @@ ln.line([x0, y0], [x1, y1], thick, color, img)
 
 A sample Sierpinski Triangle was the following: <br />
 
-![alt text](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/output/tri05.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/output/tri06.png?raw=true) <br />
