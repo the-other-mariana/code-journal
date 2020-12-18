@@ -6,9 +6,9 @@ from matplotlib import pyplot as plt
 
 # parameters for user
 color = [0, 0, 0]
-thick = 10
-dt = 0.75
-num_iter = 8
+thick = 7
+dt = 0.8
+num_iter = 6
 curr_iter = 0
 
 # white image aspect 1:1
