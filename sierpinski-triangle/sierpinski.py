@@ -6,13 +6,13 @@ from matplotlib import pyplot as plt
 
 # parameters for user
 color = [0, 0, 0]
-thick = 7
+thick = 10
 dt = 0.75
-num_iter = 5
+num_iter = 8
 curr_iter = 0
 
 # white image aspect 1:1
-img_size = 400
+img_size = 1000
 img = np.zeros([img_size, img_size,3],dtype=np.uint8)
 img[:] = (255, 255, 255)
 
