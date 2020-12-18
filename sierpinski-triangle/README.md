@@ -14,3 +14,9 @@ To use the `line.py` file: <br />
 ```Python
 import line as ln #line.py must be on same folder of sierpinski.py
 ```
+
+Now, the line can be painted on an image by:
+
+```Python
+ln.line([x0, y0], [x1, y1], thick, color, img)
+```
