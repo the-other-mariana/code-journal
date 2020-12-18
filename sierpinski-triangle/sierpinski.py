@@ -52,5 +52,5 @@ iterate(base_triangle, thick, curr_iter)
 
 # show image
 plt.plot(), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.title('Iterations = {}, Thick = {}'.format(num_iter, thick)), plt.xticks([]), plt.yticks([])
+plt.title('Iterations = {}, Thick = {}, \u0394Thick = {}'.format(num_iter, thick, dt)), plt.xticks([]), plt.yticks([])
 plt.show()
