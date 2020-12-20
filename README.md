@@ -30,6 +30,12 @@ Small Mathematica notebook that creates a worm-like animation in a .mov file. Th
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/worm/test.gif)<br />
 
+### Entry 005 [Flower Torus Mesh](https://github.com/the-other-mariana/torus-worm)
+
+Script in Python that creates a flower-like torus object in Autodesk Maya. <br />
+
+![alt text](https://github.com/the-other-mariana/torus-worm/blob/master/results/flower-render.png?raw=true) <br />
+
 ### Entry 006 [Regular Polygon Spiral](https://github.com/the-other-mariana/code-journal/tree/master/poly-spiral)
 
 Some program in Python that draws an exact regular polygon spiral image, importing my custom line module from Entry 003. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/poly-spiral/CJ06_PolygonSpiral.pdf) shows the pipeline and mathematical analysis to make it exact for any polygon. I had so much fun.<br />
