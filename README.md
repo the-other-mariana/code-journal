@@ -32,7 +32,7 @@ Small Mathematica notebook that creates a worm-like animation in a .mov file. Th
 
 ### Entry 005 [Flower Torus Mesh](https://github.com/the-other-mariana/torus-worm)
 
-Script in Python that creates a flower-like torus object in Autodesk Maya. <br />
+Script in Python that creates a flower-like torus object in Autodesk Maya. The [pdf](https://github.com/the-other-mariana/torus-worm/blob/master/results/CJ05_SineTorus.pdf) shows the overall algorithm. <br />
 
 ![alt text](https://github.com/the-other-mariana/torus-worm/blob/master/results/flower-render.png?raw=true) <br />
 
