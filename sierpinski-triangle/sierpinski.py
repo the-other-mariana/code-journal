@@ -5,14 +5,14 @@ import math
 from matplotlib import pyplot as plt
 
 # parameters for user
-color = [0, 0, 0]
-thick = 7
-dt = 0.8
-num_iter = 6
+color = [0, 0, 255]
+thick = 3
+dt = 1
+num_iter = 7
 curr_iter = 0
 
 # white image aspect 1:1
-img_size = 1000
+img_size = 2000
 img = np.zeros([img_size, img_size,3],dtype=np.uint8)
 img[:] = (255, 255, 255)
 

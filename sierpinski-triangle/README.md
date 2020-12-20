@@ -33,3 +33,7 @@ ln.line([x0, y0], [x1, y1], thick, color, img)
 A sample Sierpinski Triangle was the following: <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/output/tri06.png?raw=true) <br />
+
+You can choose not to decrease the line's thickness by setting `dt` to 1, like below. <br />
+
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/output/tri07-2.png?raw=true) <br />
