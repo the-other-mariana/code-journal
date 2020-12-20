@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 color = [0, 0, 255]
 thick = 3
 dt = 1
-num_iter = 7
+num_iter = 6
 curr_iter = 0
 
 # white image aspect 1:1
@@ -23,26 +23,25 @@ w = len(img[0])
 def iterate(tri_pts, curr_thick, curr_iter):
     curr_iter += 1
     if curr_iter <= num_iter:
+        # main triangle drawing
         for i in range(len(tri_pts)):
             ln.line(tri_pts[i], tri_pts[(i + 1) % len(tri_pts)], curr_thick, color, img)
 
-        new0 = [int((tri_pts[0][0] + tri_pts[1][0]) / 2.0), int((tri_pts[0][1] + tri_pts[1][1]) / 2.0)]
-        new1 = [int((tri_pts[1][0] + tri_pts[2][0]) / 2.0), int((tri_pts[1][1] + tri_pts[2][1]) / 2.0)]
-        new2 = [int((tri_pts[2][0] + tri_pts[0][0]) / 2.0), int((tri_pts[2][1] + tri_pts[0][1]) / 2.0)]
+        # generate the inner triangle out of the base triangle mid points
+        new_tri = []
+        for i in range(len(tri_pts)):
+            mid = [int((tri_pts[i][0] + tri_pts[(i + 1) % len(tri_pts)][0]) / 2.0), int((tri_pts[i][1] + tri_pts[(i + 1) % len(tri_pts)][1]) / 2.0)]
+            new_tri.append(mid)
 
-        new_tri = [new0, new1, new2]
+        # center triangle drawing
         for i in range(len(new_tri)):
             ln.line(new_tri[i], new_tri[(i + 1) % len(new_tri)], curr_thick, color, img)
         curr_thick *= dt
 
-        sub_tri0 = [tri_pts[0], new_tri[0], new_tri[2]]
-        iterate(sub_tri0, curr_thick, curr_iter)
-
-        sub_tri1 = [new_tri[0], tri_pts[1], new_tri[1]]
-        iterate(sub_tri1, curr_thick, curr_iter)
-
-        sub_tri2 = [new_tri[2], new_tri[1], tri_pts[2]]
-        iterate(sub_tri2, curr_thick, curr_iter)
+        # generate recursive action for the side triangles
+        for i in range(len(tri_pts)):
+            sub_tri = [tri_pts[i], new_tri[i], new_tri[(i + 2) % len(tri_pts)]]
+            iterate(sub_tri, curr_thick, curr_iter)
     else:
         return
 
