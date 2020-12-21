@@ -5,10 +5,10 @@ import math
 from matplotlib import pyplot as plt
 
 # parameters for user
-color = [0, 0, 255]
-thick = 3
+color = [0, 0, 0]
+thick = 5
 dt = 1
-num_iter = 6
+num_iter = 4
 curr_iter = 0
 
 # white image aspect 1:1

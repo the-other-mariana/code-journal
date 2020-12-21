@@ -1,6 +1,6 @@
 # Sierpinski Triangle
 
-This is a simple implementation in Python of how a Sierpinski Triangle can be painted on an image. <br />
+This is a simple implementation in Python of how a Sierpinski Triangle can be painted on an image. The [pdf file](https://github.com/the-other-mariana/code-journal/blob/master/sierpinski-triangle/CJ08_SierpinskiTriangle.pdf) explains the logic followed. <br />
 
 ## Specifications
 
