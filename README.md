@@ -60,5 +60,9 @@ Program in Python that draws a Koch Snowflake fractal, importing my custom line 
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch01.png?raw=true)<br />
 
+Koch Curve makes up a snowflake if the iterations increase. A small visualization would the as follows. <br />
+
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch-gif.gif) <br />
+
 
 
