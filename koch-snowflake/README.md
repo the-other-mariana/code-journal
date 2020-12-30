@@ -34,6 +34,6 @@ A sample Koch Snowflake was the following: <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch01.png?raw=true) <br />
 
-Koch Curve makes up a snowflake if the iterations increase. A small visualization would the as follows. <br />
+Koch Curve makes up a snowflake if the iterations increase. A small visualization of this would the as follows. <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch-gif.gif) <br />
