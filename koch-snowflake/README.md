@@ -34,6 +34,10 @@ A sample Koch Snowflake was the following: <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch01.png?raw=true) <br />
 
+Koch's curve is implemented to do a fractal with the base polygon being any type of odd-sided polygon, not only triangles. For a pentagon, the pentagonal Koch Curve looks as follows. <br />
+
+![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/penttest05.png?raw=true) <br />
+
 Koch Curve makes up a snowflake if the iterations increase. A small visualization of this would the as follows. <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch-gif.gif) <br />

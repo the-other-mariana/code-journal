@@ -10,7 +10,7 @@ thick = 5
 
 num_iter = 4
 curr_iter = 0
-sides = 5
+sides = 3
 
 # white image aspect 1:1
 img_size = 2000
@@ -23,7 +23,7 @@ w = len(img[0])
 
 koch_edges = []
 
-radius = 800
+radius = 1000
 step_angle = 360.0 / sides
 koch_angle = -1 * abs(step_angle - 180.0)
 
@@ -62,7 +62,7 @@ def koch_curve(pt1, pt2, curr_iter):
         last = [0, 0]
         #ln.circle(start, 20, [0, 0, 255], img)
 
-        # create point of new polygon
+        # create points of new polygon
         for i in range(1, sides):
             if i > 1:
                 pt = [last[0] - start[0], last[1] - start[1], 0]
