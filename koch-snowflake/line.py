@@ -30,6 +30,28 @@ def grid(gap, img):
 				img[i, j] = [0, 0, 0]
 			if (i % gap == 0 or j % gap == 0) and (i % 2 == 0 and j % 2 == 0):
 				img[i, j] = [0, 0, 0]
+				
+def circle(center, thickness, color, img):
+	# for guidance
+	h = len(img)
+	w = len(img[0])
+
+	for r in range(thickness):
+		for a in range(360):
+			rads = a * (PI / 180.0)
+			x = r * math.cos(rads) + center[0]
+			y = r * math.sin(rads) + center[1]
+
+			# center coordinates
+			x += w / 2.0
+			y = h / 2.0 - y
+			if x >= w or y >= h or x < 0 or y < 0:
+				continue
+
+			x = int(x)
+			y = int(y)
+			img[y, x] = color
+
 
 # paints a line between two points using polar coordinates
 def line(p1, p2, thickness, color, img):

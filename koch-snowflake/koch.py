@@ -10,6 +10,7 @@ thick = 5
 
 num_iter = 4
 curr_iter = 0
+sides = 5
 
 # white image aspect 1:1
 img_size = 2000
@@ -20,11 +21,12 @@ img[:] = (255, 255, 255)
 h = len(img)
 w = len(img[0])
 
-koch_angle = -60
 koch_edges = []
-sides = 3
-radius = 1000
+
+radius = 800
 step_angle = 360.0 / sides
+koch_angle = -1 * abs(step_angle - 180.0)
+
 fig_pts = []
 
 def rotate_pt3D(pt, angle_deg):
@@ -40,44 +42,76 @@ def rotate_pt3D(pt, angle_deg):
 def koch_curve(pt1, pt2, curr_iter):
     curr_iter += 1
     if curr_iter <= num_iter:
+
         pointing_vec = [pt2[0] - pt1[0], pt2[1] - pt1[1]]
         distance = math.sqrt((pointing_vec[0])**2 + (pointing_vec[1])**2)
 
         dir = [pointing_vec[0] / distance, pointing_vec[1] / distance]
-        a = distance / 3.0
-        third1 = [a * dir[0] + pt1[0], a * dir[1] + pt1[1]]
-        third2 = [2 * a * dir[0] + pt1[0], 2 * a * dir[1] + pt1[1]]
+        a = distance / (sides * 1.0)
 
-        pt = [dir[0] * a, dir[1] * a, 0]
-        top_point = rotate_pt3D(pt, koch_angle)
-        top_point = [third1[0] + top_point[0], third1[1] + top_point[1]]
+        segs = []
+        for i in range(0, sides - 1):
+            seg = [(i + 1) * a * dir[0] + pt1[0], (i + 1) * a * dir[1] + pt1[1]]
+            segs.append(seg)
 
-        koch_curve(pt1, third1, curr_iter)
-        koch_curve(third1, top_point, curr_iter)
-        koch_curve(top_point, third2, curr_iter)
-        koch_curve(third2, pt2, curr_iter)
+        mid = int(sides / 2.0)
+        pt = [a * dir[0], a * dir[1], 0]
 
+        top_point = []
+        start = segs[mid - 1]
+        last = [0, 0]
+        #ln.circle(start, 20, [0, 0, 255], img)
+
+        # create point of new polygon
+        for i in range(1, sides):
+            if i > 1:
+                pt = [last[0] - start[0], last[1] - start[1], 0]
+            pt = rotate_pt3D(pt, koch_angle)
+            last = start
+            start = [start[0] + pt[0], start[1] + pt[1]]
+            #ln.circle(start, 20, [0, 0, 255], img)
+            top_point.append(start)
+
+        # recursive from parent vertex to start
+        koch_curve(pt1, segs[mid - 1], curr_iter)
+        # recursive for each side of the new polygon
+        for i in range(1, sides):
+            if i == 1:
+                p = segs[mid - 1]
+            if i > 1:
+                p = top_point[i - 2]
+            koch_curve(p, top_point[i - 1], curr_iter)
+
+        # recursive for the last polygon vertex until end parent vertex
+        koch_curve(top_point[len(top_point) - 1], pt2, curr_iter)
+
+        # last iteration saves the edges for drawing
         if curr_iter == num_iter:
-            koch_edges.append([pt1, third1])
-            koch_edges.append([third1, top_point])
-            koch_edges.append([top_point, third2])
-            koch_edges.append([third2, pt2])
+            koch_edges.append([pt1, segs[mid - 1]])
+            for i in range(1, sides):
+                if i == 1:
+                    p = segs[mid - 1]
+                if i > 1:
+                    p = top_point[i - 2]
+                koch_edges.append([p, top_point[i - 1]])
+            koch_edges.append([top_point[len(top_point) - 1], segs[len(segs) - 1]])
+            koch_edges.append([segs[len(segs) - 1], pt2])
     else:
         return
 
-#curr_iter = 0
-#koch_curve([int(-w/2.0), int(h/2.0)], [0, int(-h/2.0)], curr_iter)
-
+# create the first polygon sides
 for i in range(sides):
     angle = (i * step_angle) + (step_angle / 2.0) + 90.0
     x = radius * math.cos(angle * (3.1416 / 180.0))
     y = radius * math.sin(angle * (3.1416 / 180.0))
     fig_pts.append([int(x), int(y)])
 
+# call function for each edge
 for i in range(sides):
     curr_iter = 0
     koch_curve(fig_pts[i], fig_pts[(i + 1) % sides], curr_iter)
 
+# draw the fractal
 for i in range(len(koch_edges)):
     ln.line(koch_edges[i][0], koch_edges[i][1], thick, color, img)
 
