@@ -26,6 +26,6 @@ for i in range(len(str)):
         end = start
     if length > max:
         max = length
-    print(c, length, max, visited)
+    #print(c, length, max, visited)
 
 print(str, max)
