@@ -60,6 +60,13 @@ Program in Python that draws a Koch Snowflake fractal, importing my custom line 
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch01.png?raw=true)<br />
 
+### Entry 010 [Longest Unique Substring](https://github.com/the-other-mariana/code-journal/tree/master/longest-unique-string)
 
+Program in Python that, given a string, finds the length of the longest substring without repeating characters. <br />
 
+#### Output
 
+```
+Input: "awwebbz"
+Output: 3	// "web"
+```
