@@ -5,7 +5,7 @@ str = input().lower()
 visited = []
 
 for i in range(26):
-    # counter, times, start, end
+    # counter, times checked
     visited.append([0, 1])
 start = 0
 end = 0
