@@ -22,10 +22,11 @@ for i in range(len(str)):
         length = 1
         for j in range(start, end):
             visited[ord(str[j]) - 97][1] = visited[ord(c) - 97][1]
+            #visited[ord(str[j]) - 97][1] += 1
         start = i
         end = start
     if length > max:
         max = length
-    #print(c, length, max, visited)
+    print(c, length, max, visited)
 
 print(str, max)
