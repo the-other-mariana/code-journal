@@ -1,7 +1,7 @@
 ## Line Function Implementation
 
 This is a small code that paints a line between two given points in an image, using polar coordinates. <br />
-Implemented in `Python 3.6` but can be easily done in any language. <br />
+Implemented in `Python 3.6` but can be easily done in any language. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/line/CJ03_PolarLine.pdf) shows the pipeline. <br />
 
 ## Usage 
 
