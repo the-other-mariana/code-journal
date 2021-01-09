@@ -1,6 +1,6 @@
 # Koch Curve Snowflake
 
-This is a simple implementation in Python of a Koch Curve Snowflake in an image. <br />
+This is a simple implementation in Python of a Koch Curve Snowflake in an image. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/CJ09_KochCurve.pdf) shows the algorithm followed. <br />
 
 ## Specifications
 

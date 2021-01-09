@@ -56,7 +56,7 @@ Program in Python that draws a Sierpinski Triangle fractal, importing my custom 
 
 ### Entry 009 [Koch Curve Snowflake](https://github.com/the-other-mariana/code-journal/tree/master/koch-snowflake)
 
-Program in Python that draws a Koch Snowflake fractal, importing my custom line module from Entry 003. <br />
+Program in Python that draws a Koch Snowflake fractal, importing my custom line module from Entry 003. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/CJ09_KochCurve.pdf) shows the algorithm followed. <br />
 
 ![alt text](https://github.com/the-other-mariana/code-journal/blob/master/koch-snowflake/output/koch01.png?raw=true)<br />
 
