@@ -73,6 +73,6 @@ Output: 3	// "web"
 
 ### Entry 011 [Numerical Derivative Visualization](https://github.com/the-other-mariana/code-journal/tree/master/deriv)
 
-Program in Python that approximates the derivative of a function (sine function) using the limit definition of the derivative.
+Program in Python that approximates the derivative of a function (sine function) using the limit definition of the derivative. The [pdf](https://github.com/the-other-mariana/code-journal/blob/master/deriv/CJ11_Deriv.pdf) explains the logic followed.
 
 ![img](deriv/res/plot.png)
