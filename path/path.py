@@ -1,5 +1,6 @@
 import numpy as np
 import seaborn as sns
+import random
 import matplotlib.pyplot as plt
 
 def mat2line(x, y, dim):
@@ -38,12 +39,12 @@ g2 =np.array([np.array(xi) for xi in g1])
 print(g2)
 
 ax = sns.heatmap(g2)
-plt.show()
+
 
 punish = -1.0 * g2
 # states
 states = len(punish) * len(punish[0])
-# actions: 0 up 1 down 2 right 3 left
+# actions: 0 up 1 down 2 right 3 left 
 actions = 4
 
 
@@ -56,6 +57,8 @@ dim = len(punish)
 for i in range(len(punish)):
 	for j in range(len(punish[0])):
 		fr[(i * dim) + j] = punish[i, j]
+
+print('fr:',list(fr))
 
 # build transition func for a states, actions matrix
 for s in range(states):
@@ -158,5 +161,23 @@ for i in range(states):
 	print(f"{names_s[i]} = {names_a[list(qsa[:, i]).index(action)]},", end='\t')
 print(politic)
 
+# start in random coord i, j
+curr = (random.randrange(dim), random.randrange(dim))
+trayectory = [curr]
 
+done = False
+while(True):
+	if done:
+		break
+	state = mat2line(curr[1], curr[0], dim)
+	sf = fmt[state, politic[state]]
 
+	curr = line2mat(sf, dim)
+	trayectory.append(curr)
+	if fr[sf] >= 0.0:
+		done = True
+
+ti = [t[0] for t in trayectory]
+tj = [t[1] for t in trayectory]
+ax.scatter(tj, ti, marker='x')
+plt.show()
