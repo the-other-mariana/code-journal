@@ -44,8 +44,9 @@ ax = sns.heatmap(g2)
 punish = -1.0 * g2
 # states
 states = len(punish) * len(punish[0])
-# actions: 0 up 1 down 2 right 3 left 
-actions = 4
+# actions: 0 up 1 down 2 right 3 left
+# 4: diag up right 5: diag up left 6: diag down right 7: diag down left
+actions = 8
 
 
 fr = np.zeros(states, dtype=float)
@@ -98,11 +99,43 @@ for s in range(states):
 	else:
 		fmt[s, 3] = mat2line(sfx, sfy, dim)
 
+	# a4 = diag up right
+	sfx = x + 1
+	sfy = y - 1
+	if sfx >= dim or sfy < 0:
+		fmt[s, 4] = mat2line(x, y, dim)
+	else:
+		fmt[s, 4] = mat2line(sfx, sfy, dim)
+
+	# a5 = diag up left
+	sfx = x - 1
+	sfy = y - 1
+	if sfx < 0 or sfy < 0:
+		fmt[s, 5] = mat2line(x, y, dim)
+	else:
+		fmt[s, 5] = mat2line(sfx, sfy, dim)
+
+	# a6 = diag down right 7: diag down left
+	sfx = x + 1
+	sfy = y + 1
+	if sfx >= dim or sfy >= dim:
+		fmt[s, 6] = mat2line(x, y, dim)
+	else:
+		fmt[s, 6] = mat2line(sfx, sfy, dim)
+
+	# a7 = diag down left
+	sfx = x - 1
+	sfy = y + 1
+	if sfx < 0 or sfy >= dim:
+		fmt[s, 7] = mat2line(x, y, dim)
+	else:
+		fmt[s, 7] = mat2line(sfx, sfy, dim)
+
 print(fmt)
 print(dim)
 
 names_s = [f'({line2mat(i, dim)[0]}, {line2mat(i, dim)[1]})' for i in range(states)]
-names_a = ['up', 'down', '->', '<-']
+names_a = ['up', 'down', '->', '<-', 'up right', 'up left', 'down right', 'down left']
 
 qsa = np.zeros((actions, states), dtype=float)
 delta = 1000000 * np.ones((actions, states), dtype=float)

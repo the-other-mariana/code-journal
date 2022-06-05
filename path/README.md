@@ -48,3 +48,25 @@ In A Star algorithm, *h(n)* is a heuristic function that estimates the cost of t
 The cost matrix looks as follows, where the 0 value (lowest) is the target cell and any other cell can be the start cell.
 
 ![img](./costs1.png)
+
+## Bellman's Optimality Equations
+
+Bellman's Optimality Equations for Q Learning are expressed for each state s and action a as:
+
+$Q(s,a) = \sum_{s_f \in S}{P_{MT}(s_f|s,a) \cdot (f_R(s,a,s_f) + \gamma \max_{a_f}{Q(s_f, a_f)})} $
+
+Specifically, since a simple grid problem is considered **deterministic**, the sum using the product of the probabilities for each $s_f$ can be ignored:
+
+$Q(s,a) = f_R(s,a,s_f) + \gamma \max_{a_f}{Q(s_f, a_f)} $,
+
+where $s_f$ is defined as:
+
+$s_f = f_{TM}(s, a)$,
+
+considering $f_{MT}$ is a matrix of dimensions $S \times A$ with the indices of the arrival states given state $s$ and action $a$. In this case, $S = \{s_0, s_1, ..., s_{N \times N}\}$ for a grid of $N$ cells.
+
+## Optimal Politic Exploitation
+
+Here there are some sample trayectories from random start points to the goal using the optimal politic resulting from Bellman's Optimality Equations for Q Learning:
+
+![img](./sample.gif)
