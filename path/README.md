@@ -65,8 +65,20 @@ $s_f = f_{TM}(s, a)$,
 
 considering $f_{MT}$ is a matrix of dimensions $S \times A$ with the indices of the arrival states given state $s$ and action $a$. In this case, $S = \{s_0, s_1, ..., s_{N \times N}\}$ for a grid of $N$ cells.
 
-## Optimal Politic Exploitation
+## Optimal Politcy Exploitation
 
-Here there are some sample trayectories from random start points to the goal using the optimal politic resulting from Bellman's Optimality Equations for Q Learning:
+Here there are some sample trayectories from random start points to the goal using the optimal policy resulting from Bellman's Optimality Equations for Q Learning:
 
 ![img](./sample.gif)
+
+## Optimal Policy
+
+With a matrix of costs given by perlin noise values, we can also calculate the optimal policy from a random point. But now, we will have **multiple possible goals**, since the blue areas are many and they can **accumulate a better policy** when compared **to other** farther blue areas anc considering the start point positioned randomly.
+
+![img](./sample-terrain.gif)
+
+The costs or punishments look like this:
+
+![img](./out/punish-mtx.png)
+
+Where a bounding cell on each frame limit has a cost of -1000.
