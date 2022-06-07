@@ -15,7 +15,7 @@ def rescale(a, x, min, max):
 	x_std = (x - lowest) / (highest - lowest)
 	x_scaled = x_std * (max - min) + min
 	f = lambda x: int(x)
-	return x_scaled
+	return f(x_scaled)
 
 def print_head(iter, fr, names_s):
     print("==========================")
@@ -50,14 +50,15 @@ noise = PerlinNoise(octaves=2, seed=1)
 xpix, ypix = 37, 37
 pic = [[noise([i/xpix, j/ypix]) for j in range(xpix)] for i in range(ypix)]
 pic = np.array(pic)
-pic2 = np.ones((37, 37), dtype=float)
+pic2 = np.ones((37, 37), dtype=int)
 for i in range(len(pic)):
 	for j in range(len(pic)):
-		pic2[i, j] = rescale(pic, pic[i, j], 1.0, 255.0)
+		pic2[i, j] = rescale(pic, pic[i, j], 1, 255)
 mins = list(np.where(pic2 == np.amin(pic2)))
 if len(mins) > 1:
 	pic2[mins[0][0], mins[1][0]] = 0
-print('pic', pic2)
+	print("[ERROR] world generation went wrong, please try again")
+
 #ax = sns.heatmap(g2)
 
 
@@ -162,7 +163,7 @@ for i in range(states):
 print(politic)
 
 # start in random coord i, j
-curr = (30, 20)
+curr = (22, 10)
 trayectory = [curr]
 last_state = None
 
