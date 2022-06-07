@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 from perlin_noise import PerlinNoise
 import seaborn as sns
 
+gamma = 0.9
+eps = 0.01
+N = 37
+
 def mat2line(x, y, dim):
 	return (y * dim) + x
 
@@ -18,22 +22,29 @@ def rescale(a, x, min, max):
 	f = lambda x: int(x)
 	return f(x_scaled)
 
+def build_cycle_checker(cycle_tolerance):
+	cycle_check = []
+	for c in range(cycle_tolerance):
+		cycle_check += [None]
+	return cycle_check
+
 def print_head(iter, fr, names_s):
-    print("==========================")
-    print(f"Iteration {iter}:")
-    print("fr:", fr)
-    for i in range(len(list(fr))):
-        print(names_s[i], end='\t')
-    print()
+	print("==========================")
+	print(f"Iteration {iter}:")
+	print("fr:", fr)
+	for i in range(len(list(fr))):
+		print(names_s[i], end='\t')
+	print()
 
 def print_qsa(qsa, msg):
-    print("Q(s,a)", msg)
-    for a in range(len(qsa)):
-        for s in range(len(qsa[0])):
-            val = qsa[a][s]
-            print("{:.2f}".format(val), end='\t')
-        print()
+	print("Q(s,a)", msg)
+	for a in range(len(qsa)):
+		for s in range(len(qsa[0])):
+			val = qsa[a][s]
+			print("{:.2f}".format(val), end='\t')
+		print()
 
+'''
 with open('cost.txt') as f:
 	lines = f.readlines()
 g1 = [[] for l in range(len(lines))]
@@ -45,12 +56,14 @@ for l in range(len(lines)):
 		g1[l].append(int(p))
 
 g2 =np.array([np.array(xi) for xi in g1])
+'''
 
 noise = PerlinNoise(octaves=2, seed=1)
-xpix, ypix = 37, 37
+xpix, ypix = N, N
 pic = [[noise([i/xpix, j/ypix]) for j in range(xpix)] for i in range(ypix)]
 pic = np.array(pic)
-pic2 = np.ones((37, 37), dtype=int)
+pic2 = np.ones((N, N), dtype=int)
+
 for i in range(len(pic)):
 	for j in range(len(pic)):
 		pic2[i, j] = rescale(pic, pic[i, j], 1, 255)
@@ -59,13 +72,10 @@ if len(mins) > 1:
 	pic2[mins[0][0], mins[1][0]] = 0
 	print("[ERROR] world generation went wrong, please try again")
 
-frame = np.ones((39, 39), dtype=int)
+frame = np.ones((N+2, N+2), dtype=int)
 frame = frame * 1000
 frame[1:-1, 1:-1] = pic2
 print('frame', frame)
-
-#ax = sns.heatmap(g2)
-
 
 punish = -1 * frame
 # states
@@ -78,7 +88,6 @@ actions = len(a)
 
 fr = np.zeros(states, dtype=float)
 fmt = np.zeros((states, actions), dtype=int)
-
 dim = len(punish)
 
 # build reward func based on costs
@@ -104,7 +113,6 @@ for s in range(states):
 			# store the final state
 			fmt[s, i] = mat2line(sfx, sfy, dim)
 
-print(fmt)
 print(dim)
 
 names_s = [f'({line2mat(i, dim)[0]}, {line2mat(i, dim)[1]})' for i in range(states)]
@@ -114,11 +122,9 @@ qsa = np.zeros((actions, states), dtype=float)
 delta = 1000000 * np.ones((actions, states), dtype=float)
 done = np.zeros((actions, states), dtype=bool)
 iter = 1
-gamma = 0.9
-eps = 0.01
+
 
 while(True):
-
 	# stop condition
 	for i in range(actions):
 		for j in range(states):
@@ -126,10 +132,6 @@ while(True):
 				done[i, j] = True
 	if all(list(done.reshape(actions * states))):
 		break
-
-	# print head and current qsa
-	#print_head(iter, fr, names_s)
-	#print_qsa(qsa, 'current')
 
 	# calculate q(s,a) for each s
 	for ai in range(actions):
@@ -153,8 +155,6 @@ while(True):
 			delta[ai][si] = abs(q - qsa[ai][si])
 			# update v for next iteration
 			qsa[ai][si] = q
-	# print new vs
-	# print_qsa(qsa, 'new')
 	iter += 1
 
 politic = np.zeros(states, dtype=int)
@@ -168,13 +168,11 @@ for i in range(states):
 print(politic)
 
 # start in random coord i, j
-curr = (30, 20)
+curr = (random.randrange(dim-1), random.randrange(dim-1))
 trayectory = [curr]
 
 cycle_tolerance = 2
-cycle_check = []
-for c in range(cycle_tolerance):
-	cycle_check += [None]
+cycle_check = build_cycle_checker(cycle_tolerance)
 
 steps = 0
 
@@ -202,14 +200,14 @@ while(True):
 		done = True
 	steps += 1
 
+# if we show only the field w/o bounds, we substract 1 to the frame coordinates in trayectory
 ti = [t[0]-1 for t in trayectory]
 tj = [t[1]-1 for t in trayectory]
-#ax.scatter(tj, ti, marker='x')
-#plt.show()
+
 plt.imshow(frame[1:-1, 1:-1], cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
 
-ax = sns.heatmap(punish, annot=True, fmt='d')
+ax = sns.heatmap(punish[:19, :19], annot=True, fmt='d')
 plt.show()
 
