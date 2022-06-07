@@ -46,7 +46,8 @@ punish = -1.0 * g2
 states = len(punish) * len(punish[0])
 # actions: 0 up 1 down 2 right 3 left
 # 4: diag up right 5: diag up left 6: diag down right 7: diag down left
-actions = 8
+a = [[0, -1], [0, 1], [1, 0], [-1, 0], [1, -1], [-1, -1], [1, 1], [-1, 1]]
+actions = len(a)
 
 
 fr = np.zeros(states, dtype=float)
@@ -67,69 +68,15 @@ for s in range(states):
 	x = s % dim
 	y = s // dim
 
-	# a0 = up
-	sfx = x
-	sfy = y - 1
-	if sfy < 0:
-		fmt[s, 0] = mat2line(x, y, dim)
-	else:
-		fmt[s, 0] = mat2line(sfx, sfy, dim)
-
-	# a1 = down
-	sfx = x
-	sfy = y + 1
-	if sfy >= dim:
-		fmt[s, 1] = mat2line(x, y, dim)
-	else:
-		fmt[s, 1] = mat2line(sfx, sfy, dim)
-
-	# a2 = right
-	sfx = x + 1
-	sfy = y
-	if sfx >= dim:
-		fmt[s, 2] = mat2line(x, y, dim)
-	else:
-		fmt[s, 2] = mat2line(sfx, sfy, dim)
-
-	# a3 = left
-	sfx = x - 1
-	sfy = y
-	if sfx < 0:
-		fmt[s, 3] = mat2line(x, y, dim)
-	else:
-		fmt[s, 3] = mat2line(sfx, sfy, dim)
-
-	# a4 = diag up right
-	sfx = x + 1
-	sfy = y - 1
-	if sfx >= dim or sfy < 0:
-		fmt[s, 4] = mat2line(x, y, dim)
-	else:
-		fmt[s, 4] = mat2line(sfx, sfy, dim)
-
-	# a5 = diag up left
-	sfx = x - 1
-	sfy = y - 1
-	if sfx < 0 or sfy < 0:
-		fmt[s, 5] = mat2line(x, y, dim)
-	else:
-		fmt[s, 5] = mat2line(sfx, sfy, dim)
-
-	# a6 = diag down right 7: diag down left
-	sfx = x + 1
-	sfy = y + 1
-	if sfx >= dim or sfy >= dim:
-		fmt[s, 6] = mat2line(x, y, dim)
-	else:
-		fmt[s, 6] = mat2line(sfx, sfy, dim)
-
-	# a7 = diag down left
-	sfx = x - 1
-	sfy = y + 1
-	if sfx < 0 or sfy >= dim:
-		fmt[s, 7] = mat2line(x, y, dim)
-	else:
-		fmt[s, 7] = mat2line(sfx, sfy, dim)
+	for i in range(len(a)):
+		sfx = x + a[i][0]
+		sfy = y + a[i][1]
+		if sfx < 0 or sfx >= dim or sfy < 0 or sfy >= dim:
+			# if action a[i] goes beyond bounds, stay in current state
+			fmt[s, i] = mat2line(x, y, dim)
+		else:
+			# store the final state
+			fmt[s, i] = mat2line(sfx, sfy, dim)
 
 print(fmt)
 print(dim)
