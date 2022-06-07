@@ -1,13 +1,21 @@
 import numpy as np
-import seaborn as sns
 import random
 import matplotlib.pyplot as plt
+from perlin_noise import PerlinNoise
 
 def mat2line(x, y, dim):
 	return (y * dim) + x
 
 def line2mat(s, dim):
 	return (s // dim, s % dim)
+
+def rescale(a, x, min, max):
+	highest = np.amax(a)
+	lowest = np.amin(a)
+	x_std = (x - lowest) / (highest - lowest)
+	x_scaled = x_std * (max - min) + min
+	f = lambda x: int(x)
+	return x_scaled
 
 def print_head(iter, fr, names_s):
     print("==========================")
@@ -38,10 +46,22 @@ for l in range(len(lines)):
 g2 =np.array([np.array(xi) for xi in g1])
 print(g2)
 
+noise = PerlinNoise(octaves=2, seed=1)
+xpix, ypix = 37, 37
+pic = [[noise([i/xpix, j/ypix]) for j in range(xpix)] for i in range(ypix)]
+pic = np.array(pic)
+pic2 = np.ones((37, 37), dtype=float)
+for i in range(len(pic)):
+	for j in range(len(pic)):
+		pic2[i, j] = rescale(pic, pic[i, j], 1.0, 255.0)
+mins = list(np.where(pic2 == np.amin(pic2)))
+if len(mins) > 1:
+	pic2[mins[0][0], mins[1][0]] = 0
+print('pic', pic2)
 #ax = sns.heatmap(g2)
 
 
-punish = -1.0 * g2
+punish = -1 * pic2
 # states
 states = len(punish) * len(punish[0])
 # actions: 0 up 1 down 2 right 3 left
@@ -60,7 +80,7 @@ for i in range(len(punish)):
 	for j in range(len(punish[0])):
 		fr[(i * dim) + j] = punish[i, j]
 
-print('fr:',list(fr))
+print('fr:', list(fr))
 
 # build transition func for a states, actions matrix
 for s in range(states):
@@ -142,25 +162,33 @@ for i in range(states):
 print(politic)
 
 # start in random coord i, j
-curr = (random.randrange(dim), random.randrange(dim))
+curr = (30, 20)
 trayectory = [curr]
+last_state = None
 
 done = False
 while(True):
 	if done:
 		break
+	if curr == last_state:
+		break
 	state = mat2line(curr[1], curr[0], dim)
+
 	sf = fmt[state, politic[state]]
 
+	last_state = curr
 	curr = line2mat(sf, dim)
 	trayectory.append(curr)
-	if fr[sf] >= 0.0:
+	print(fr[sf], curr)
+	if fr[sf] >= 0:
+		print('done walking')
 		done = True
 
 ti = [t[0] for t in trayectory]
 tj = [t[1] for t in trayectory]
 #ax.scatter(tj, ti, marker='x')
 #plt.show()
-plt.imshow(g2, cmap='terrain')
+plt.imshow(pic2, cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
+
