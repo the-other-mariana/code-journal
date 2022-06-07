@@ -170,22 +170,30 @@ print(politic)
 # start in random coord i, j
 curr = (30, 20)
 trayectory = [curr]
-last_state = None
-last_last = None
+
+cycle_tolerance = 2
+cycle_check = []
+for c in range(cycle_tolerance):
+	cycle_check += [None]
+
 steps = 0
 
 done = False
+cycled = False
 while(True):
-	if done:
+	if done or cycled:
 		break
-	if curr == last_state or last_last == curr:
-		break
+	for c in cycle_check:
+		if curr == c:
+			cycled = True
+			break
 	state = mat2line(curr[1], curr[0], dim)
-
 	sf = fmt[state, politic[state]]
 
-	last_last = last_state
-	last_state = curr
+	for i in range(1, len(cycle_check)):
+		cycle_check[i] = cycle_check[i - 1]
+	cycle_check[0] = curr
+
 	curr = line2mat(sf, dim)
 	trayectory.append(curr)
 	print(fr[sf], curr)
