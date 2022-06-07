@@ -2,6 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 from perlin_noise import PerlinNoise
+import seaborn as sns
 
 def mat2line(x, y, dim):
 	return (y * dim) + x
@@ -44,7 +45,6 @@ for l in range(len(lines)):
 		g1[l].append(int(p))
 
 g2 =np.array([np.array(xi) for xi in g1])
-print(g2)
 
 noise = PerlinNoise(octaves=2, seed=1)
 xpix, ypix = 37, 37
@@ -59,10 +59,15 @@ if len(mins) > 1:
 	pic2[mins[0][0], mins[1][0]] = 0
 	print("[ERROR] world generation went wrong, please try again")
 
+frame = np.ones((39, 39), dtype=int)
+frame = frame * 1000
+frame[1:-1, 1:-1] = pic2
+print('frame', frame)
+
 #ax = sns.heatmap(g2)
 
 
-punish = -1 * pic2
+punish = -1 * frame
 # states
 states = len(punish) * len(punish[0])
 # actions: 0 up 1 down 2 right 3 left
@@ -109,7 +114,7 @@ qsa = np.zeros((actions, states), dtype=float)
 delta = 1000000 * np.ones((actions, states), dtype=float)
 done = np.zeros((actions, states), dtype=bool)
 iter = 1
-gamma = 0.8
+gamma = 0.9
 eps = 0.01
 
 while(True):
@@ -163,20 +168,23 @@ for i in range(states):
 print(politic)
 
 # start in random coord i, j
-curr = (22, 10)
+curr = (30, 20)
 trayectory = [curr]
 last_state = None
+last_last = None
+steps = 0
 
 done = False
 while(True):
 	if done:
 		break
-	if curr == last_state:
+	if curr == last_state or last_last == curr:
 		break
 	state = mat2line(curr[1], curr[0], dim)
 
 	sf = fmt[state, politic[state]]
 
+	last_last = last_state
 	last_state = curr
 	curr = line2mat(sf, dim)
 	trayectory.append(curr)
@@ -184,12 +192,16 @@ while(True):
 	if fr[sf] >= 0:
 		print('done walking')
 		done = True
+	steps += 1
 
-ti = [t[0] for t in trayectory]
-tj = [t[1] for t in trayectory]
+ti = [t[0]-1 for t in trayectory]
+tj = [t[1]-1 for t in trayectory]
 #ax.scatter(tj, ti, marker='x')
 #plt.show()
-plt.imshow(pic2, cmap='terrain')
+plt.imshow(frame[1:-1, 1:-1], cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
+plt.show()
+
+ax = sns.heatmap(punish, annot=True, fmt='d')
 plt.show()
 
