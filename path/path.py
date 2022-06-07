@@ -38,7 +38,7 @@ for l in range(len(lines)):
 g2 =np.array([np.array(xi) for xi in g1])
 print(g2)
 
-ax = sns.heatmap(g2)
+#ax = sns.heatmap(g2)
 
 
 punish = -1.0 * g2
@@ -159,5 +159,8 @@ while(True):
 
 ti = [t[0] for t in trayectory]
 tj = [t[1] for t in trayectory]
-ax.scatter(tj, ti, marker='x')
+#ax.scatter(tj, ti, marker='x')
+#plt.show()
+plt.imshow(g2, cmap='terrain')
+plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
