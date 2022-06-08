@@ -208,6 +208,7 @@ plt.imshow(frame[1:-1, 1:-1], cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
 
-ax = sns.heatmap(punish[:19, :19], annot=True, fmt='d')
+ax = sns.heatmap(punish)
+plt.savefig('punish-full', dpi=500)
 plt.show()
 
