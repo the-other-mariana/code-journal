@@ -209,6 +209,17 @@ plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
 
 ax = sns.heatmap(punish)
-plt.savefig('punish-full', dpi=500)
+#plt.savefig('punish-full', dpi=500)
+plt.show()
+
+fig = plt.figure()
+# add axes
+ax3d = fig.add_subplot(111,projection='3d')
+
+xx, yy = np.meshgrid(range(N), range(N))
+
+# plot the plane
+ax3d.plot_surface(yy, xx, frame[1:-1, 1:-1], alpha=0.5, cmap='terrain', edgecolor='black')
+
 plt.show()
 
