@@ -208,8 +208,9 @@ plt.imshow(frame[1:-1, 1:-1], cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
 
-ax = sns.heatmap(punish)
-#plt.savefig('punish-full', dpi=500)
+ax = sns.heatmap(punish[10:20, 0:10], annot=True, fmt='d')
+ax.set_yticklabels(list(np.arange(10, 20)))
+plt.savefig('punish-pt2', dpi=500)
 plt.show()
 
 fig = plt.figure()
