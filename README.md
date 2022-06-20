@@ -79,6 +79,6 @@ Program in Python that approximates the derivative of a function (sine function)
 
 ### Entry 012 [Bellman's Optimality Equations for Perlin Noise Grid](https://github.com/the-other-mariana/code-journal/tree/master/path)
 
-Program in Python that, given a matrix perlin noise values (reward), finds the optimal trayectory given a random start point inside a grid of dimensions $N \times N$ using Bellman's Optimality Equations solved for Q using value iteration as a numerical approximation to the equation's solution.
+Program in Python that, given a matrix perlin noise values (reward), finds the optimal trayectory given a random start point inside a grid of dimensions $N \times N$ using Bellman's Optimality Equations solved for Q using value iteration as a numerical approximation to the equation's solution. The [pdf](./path/CJ11_Path2.pdf) explains the logic followed.
 
 ![img](./path/sample-terrain.gif)
