@@ -169,7 +169,7 @@ print(politic)
 
 # start in random coord i, j
 curr = (random.randrange(dim-1), random.randrange(dim-1))
-trayectory = [curr]
+trajectory = [curr]
 
 cycle_tolerance = 2
 cycle_check = build_cycle_checker(cycle_tolerance)
@@ -193,34 +193,54 @@ while(True):
 	cycle_check[0] = curr
 
 	curr = line2mat(sf, dim)
-	trayectory.append(curr)
+	trajectory.append(curr)
 	print(fr[sf], curr)
 	if fr[sf] >= 0:
 		print('done walking')
 		done = True
 	steps += 1
 
-# if we show only the field w/o bounds, we substract 1 to the frame coordinates in trayectory
-ti = [t[0]-1 for t in trayectory]
-tj = [t[1]-1 for t in trayectory]
+# if we show only the field w/o bounds, we substract 1 to the frame coordinates in trajectory
+ti = [t[0]-1 for t in trajectory]
+tj = [t[1]-1 for t in trajectory]
 
+# plot to see full terrain and trajectory
 plt.imshow(frame[1:-1, 1:-1], cmap='terrain')
 plt.scatter(tj, ti, marker='x', color='red')
 plt.show()
 
+# plot to save a part of punish mtx
 ax = sns.heatmap(punish[10:20, 0:10], annot=True, fmt='d')
 ax.set_yticklabels(list(np.arange(10, 20)))
-plt.savefig('punish-pt2', dpi=500)
+#plt.savefig('punish-pt2', dpi=500)
 plt.show()
 
 fig = plt.figure()
 # add axes
 ax3d = fig.add_subplot(111,projection='3d')
-
 xx, yy = np.meshgrid(range(N), range(N))
-
-# plot the plane
 ax3d.plot_surface(yy, xx, frame[1:-1, 1:-1], alpha=0.5, cmap='terrain', edgecolor='black')
+plt.show()
 
+# plot to see qsa: make rows thicker
+row_size = 200
+q_square = np.zeros((actions * row_size, states), dtype=float)
+
+for a in range(actions):
+	piece = np.zeros((row_size, states), dtype=float)
+	for r in range(row_size):
+		for s in range(states):
+			piece[r, s] = qsa[a, s]
+	q_square[(a*row_size): (a*row_size) + row_size, :] = piece
+
+fig, ax = plt.subplots(1, 1)
+img = ax.imshow(q_square)
+y_label_list = [names_a[x] for x in range(actions)]
+y_ticks_pos = [(x*row_size) + int(row_size*0.5) for x in range(actions)]
+
+ax.set_yticks(y_ticks_pos)
+ax.set_yticklabels(y_label_list)
+
+fig.colorbar(img)
 plt.show()
 
