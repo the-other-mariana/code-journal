@@ -245,8 +245,9 @@ fig.colorbar(img)
 plt.show()
 
 # plot to see q column when cycled
+plt.figure(figsize=(4, 3))
 x = 33
-y = 34
+y = 35
 s = mat2line(x, y, dim)
 print(f'{s} punish: {punish[y, x]} -> fr = {fr[s]}')
 y_vals = qsa[:, s]
