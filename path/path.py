@@ -244,3 +244,14 @@ ax.set_yticklabels(y_label_list)
 fig.colorbar(img)
 plt.show()
 
+# plot to see q column when cycled
+x = 33
+y = 34
+s = mat2line(x, y, dim)
+print(f'{s} punish: {punish[y, x]} -> fr = {fr[s]}')
+y_vals = qsa[:, s]
+x_vals = [i for i in range(len(y_vals))]
+plt.plot(x_vals, y_vals, marker='o')
+chosen = max(y_vals)
+plt.scatter([x_vals[list(y_vals).index(chosen)]], [chosen], marker='x')
+plt.show()
