@@ -244,15 +244,20 @@ ax.set_yticklabels(y_label_list)
 fig.colorbar(img)
 plt.show()
 
-# plot to see q column when cycled
-plt.figure(figsize=(4, 3))
+# plot to see q column and max when cycled
+#plt.rcParams['text.usetex'] = True
+f = plt.figure(figsize=(4,3))
+ax = f.add_subplot(111)
 x = 33
-y = 35
+y = 34
 s = mat2line(x, y, dim)
 print(f'{s} punish: {punish[y, x]} -> fr = {fr[s]}')
 y_vals = qsa[:, s]
 x_vals = [i for i in range(len(y_vals))]
 chosen = max(y_vals)
-plt.plot(x_vals, y_vals, marker='o')
-plt.scatter([x_vals[list(y_vals).index(chosen)]], [chosen], marker='x', color='red', zorder=10)
+ax.plot(x_vals, y_vals, marker='o')
+ax.scatter([x_vals[list(y_vals).index(chosen)]], [chosen], marker='x', color='red', zorder=10, s=50)
+ax.set_xticks([i for i in range(len(names_a))])
+ax.set_xticklabels([f'a{i}' for i in range(len(names_a))])
+ax.set_title(r"$max_a(Q(mat2line(33,34), a))$")
 plt.show()
